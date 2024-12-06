@@ -1,29 +1,33 @@
-import "react-native-gesture-handler";
-import { createDrawerNavigator } from "@react-navigation/drawer"
-import { NavigationContainer } from "@react-navigation/native";
-import {DashboardScreen} from "../screens/DashboardScreen";
-import {SettingScreen} from "../screens/SettingScreen";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { ProfileScreen } from "../screens/ProfileScreen";
+import {CourseListScreen} from "../screens/CourseListScreen";
+import { SettingScreen } from "../screens/SettingScreen";
+import { Ionicons } from "@expo/vector-icons";
+
+const Tab=createBottomTabNavigator();
 
 
-
-const Drawer=createDrawerNavigator();
-
-export default function Index(){
+export default function Index()
+{
     return (
-        <Drawer.Navigator>
-            <Drawer.Screen name="Dashboard" component={DashboardScreen}
-            options={{
-                title:"My dashboard",
-                drawerLabel:"Dashboard label",
-                drawerActiveTintColor:"#333",
-                drawerActiveBackgroundColor:"lightblue",
-                drawerContentStyle:{
-                    backgroundColor:"#c6cbef",
-                },
-               
+        <Tab.Navigator 
+            screenOptions={{
+                tabBarLabelPosition:"beside-icon",
+                tabBarShowLabel:true,
+                tabBarActiveTintColor:"purple",
             }}
+        >
+            <Tab.Screen name="Profile" component={ProfileScreen}
+                options={{
+                    tabBarLabel:"My Profile",
+                    tabBarIcon:({color})=>{
+                        <Ionicons name="person" size={28} color={color}/>
+                    },
+                    tabBarBadge:3,
+                }}
             />
-            <Drawer.Screen name="Setting" component={SettingScreen}/>
-        </Drawer.Navigator>
+            <Tab.Screen name="CourseList" component={CourseListScreen}/>
+            <Tab.Screen  name="Setting" component={SettingScreen}/>
+        </Tab.Navigator>
     )
 }
