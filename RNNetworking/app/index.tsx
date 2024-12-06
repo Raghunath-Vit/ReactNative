@@ -3,6 +3,7 @@ import { ProfileScreen } from "../screens/ProfileScreen";
 import {CourseListScreen} from "../screens/CourseListScreen";
 import { SettingScreen } from "../screens/SettingScreen";
 import { Ionicons } from "@expo/vector-icons";
+import { AboutStack } from "../indexStackNavigation";
 
 const Tab=createBottomTabNavigator();
 
@@ -26,8 +27,15 @@ export default function Index()
                     tabBarBadge:3,
                 }}
             />
-            <Tab.Screen name="CourseList" component={CourseListScreen}/>
+            <Tab.Screen name="CourseList" component={CourseListScreen} 
+            
+            />
             <Tab.Screen  name="Setting" component={SettingScreen}/>
+            <Tab.Screen name="About Stack" component={AboutStack} 
+            options={{
+                headerShown:false,
+            }}
+            />
         </Tab.Navigator>
     )
 }
